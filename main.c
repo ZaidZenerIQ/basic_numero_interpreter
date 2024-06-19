@@ -34,7 +34,6 @@ int main(int argc,char *argv[]){
 	size_t lines = 0;
 	float num = 0;
 	bool ifs = false;
-	int  tn = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -44,9 +43,6 @@ int main(int argc,char *argv[]){
 	while(fgets(strn, 100, fptr)){
    		//printf("%lu - %s",lines,strn);
 		strn[strcspn(strn, "\n")] = 0;
-	//	printf("%s | %d - %d = %d\n",strn,lines,tn,lines-tn);
-		if(strcmp(strn,"_start_")==0)tn = lines+1;
-		if(lines-tn == 1 && tn > 0)ifs = true;
 		if(ifs)equle(strn,&num);
 		//commmands
 		if(argv[2][0] == '-'){
@@ -93,6 +89,7 @@ int main(int argc,char *argv[]){
 		}
 
 		lines++;
+		if(strcmp(strn,"_start_")==0)ifs = true;
  	}
 
 	fclose(fptr);
