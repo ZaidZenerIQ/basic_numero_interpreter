@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "calco.h"
+#include "vars.h"
 int main(int argc,char *argv[]){
 	if(argv[1]==NULL){
 		printf("Nead argument of the name of the file\n");
@@ -34,6 +35,7 @@ int main(int argc,char *argv[]){
 	size_t lines = 0;
 	float num = 0;
 	bool ifs = false;
+	bool vif = false;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -90,6 +92,10 @@ int main(int argc,char *argv[]){
 
 		lines++;
 		if(strcmp(strn,"_start_")==0)ifs = true;
+		if(!ifs){
+			vif  = var_checker(strn);
+			//printf("%s\n",strn);
+		}
  	}
 
 	fclose(fptr);

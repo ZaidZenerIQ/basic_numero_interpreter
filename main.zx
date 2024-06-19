@@ -1,6 +1,5 @@
-1+2
-2+2
-out "hello world!"
+a = 3
+b = 2
 _start_
 1+2+2
 3+3
