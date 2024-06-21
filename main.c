@@ -4,7 +4,16 @@
 #include <stdbool.h>
 #include "calco.h"
 #include "vars.h"
+
+struct var_data {
+	char var_name[100][100];
+	char var_value[100][100];
+	bool num;
+};
+
 int main(int argc,char *argv[]){
+	struct var_data var_info;
+
 	if(argv[1]==NULL){
 		printf("Nead argument of the name of the file\n");
 		return 1;
@@ -36,15 +45,28 @@ int main(int argc,char *argv[]){
 	float num = 0;
 	bool ifs = false;
 	bool vif = false;
+	//just for test variables
+	char gg[100];
+	char kk[100];
+	bool nn;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
  		printf("Not able to found this file.\n");
 		return 1;
 	}
+	//main loop
 	while(fgets(strn, 100, fptr)){
-   		//printf("%lu - %s",lines,strn);
 		strn[strcspn(strn, "\n")] = 0;
+
+		if(!ifs) vif  = var_checker(strn);
+		if(vif){
+			get_name_var(strn,gg);
+			get_value_var(strn,kk);
+			nn = get_type_var(kk);
+		}
+
+   		//printf("%lu - %s",lines,strn);
 		if(ifs)equle(strn,&num);
 		//commmands
 		if(argv[2][0] == '-'){
@@ -92,10 +114,6 @@ int main(int argc,char *argv[]){
 
 		lines++;
 		if(strcmp(strn,"_start_")==0)ifs = true;
-		if(!ifs){
-			vif  = var_checker(strn);
-			//printf("%s\n",strn);
-		}
  	}
 
 	fclose(fptr);
