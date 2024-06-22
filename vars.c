@@ -21,8 +21,12 @@ bool var_checker(char *str_in){
 }
 void get_name_var(char *str_in,char *str_out){
 	int i = 0;
+	int j = 0;
 	while(str_in[i]!= '='){
-		str_out[i] = str_in[i];
+		if(str_in[i]!=' '){
+		str_out[j] = str_in[i];
+		j++;
+		}
 		i++;
 	}
 }
@@ -44,4 +48,6 @@ bool get_type_var(char *var_in){
 	// 1 => num
 	// 0 => str
 	return (var_in[0]!='"');
+}
+bool check_use_var(char *str_in,char *var_name){
 }

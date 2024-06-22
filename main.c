@@ -8,7 +8,7 @@
 struct var_data {
 	char var_name[100][100];
 	char var_value[100][100];
-	bool num;
+	bool num[100];
 };
 
 int main(int argc,char *argv[]){
@@ -45,10 +45,9 @@ int main(int argc,char *argv[]){
 	float num = 0;
 	bool ifs = false;
 	bool vif = false;
-	//just for test variables
-	char gg[100];
-	char kk[100];
-	bool nn;
+	int n = 0;
+	char streq[100][100];
+	int len = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -61,13 +60,27 @@ int main(int argc,char *argv[]){
 
 		if(!ifs) vif  = var_checker(strn);
 		if(vif){
-			get_name_var(strn,gg);
-			get_value_var(strn,kk);
-			nn = get_type_var(kk);
+			get_name_var(strn,var_info.var_name[n]);
+			get_value_var(strn,var_info.var_value[n]);
+			var_info.num[n] = get_type_var(var_info.var_value[n]);
+			n++;
 		}
+	//	printf("___________________________________________\n");
+	//	for(int i = 0;i<n;i++){
+	//		printf("%s=",var_info.var_name[i]);
+	//		printf("%s|",var_info.var_value[i]);
+	//		printf("%b\n",var_info.num[i]);
+	//	}
 
    		//printf("%lu - %s",lines,strn);
-		if(ifs)equle(strn,&num);
+		if(ifs){
+			equle(strn,&num,streq,&len);
+		for(int i = 0;i<=len;i++){
+			printf("%s",streq[i]);
+		}
+		printf("\n");
+		}
+
 		//commmands
 		if(argv[2][0] == '-'){
 			if(argv[2][1]=='\0'){

@@ -1,9 +1,8 @@
 a = 1
 b = 2
- x = 3
-zaid = "4"
+hi = "hello world!"
 _start_
-1+2+2
+a+2+zaid
 3+3
 4*5
 1-6*9
