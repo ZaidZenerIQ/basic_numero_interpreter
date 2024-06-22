@@ -74,11 +74,7 @@ int main(int argc,char *argv[]){
 
    		//printf("%lu - %s",lines,strn);
 		if(ifs){
-			equle(strn,&num,streq,&len);
-		for(int i = 0;i<=len;i++){
-			printf("%s",streq[i]);
-		}
-		printf("\n");
+			equle(strn,&num);
 		}
 
 		//commmands
