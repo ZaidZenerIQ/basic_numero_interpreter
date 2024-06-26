@@ -74,6 +74,7 @@ int main(int argc,char *argv[]){
 
    		//printf("%lu - %s",lines,strn);
 		if(ifs){
+			see_var(strn,var_info.var_name,var_info.var_value,var_info.num,n);
 			equle(strn,&num);
 		}
 

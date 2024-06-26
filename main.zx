@@ -1,6 +1,7 @@
-a = 1
+a = 12
 b = 2
 hi = "hello world!"
+zaid = 23
 _start_
 a+2+zaid
 3+3

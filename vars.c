@@ -49,5 +49,41 @@ bool get_type_var(char *var_in){
 	// 0 => str
 	return (var_in[0]!='"');
 }
-bool check_use_var(char *str_in,char *var_name){
+void see_var(char *str,char name[100][100],char value[100][100],bool *num,int n){
+	int k = 0;
+	int q = 0;
+	int l = 0;
+	char vstr[100][100];
+	char tstr[100];
+	char swap[100];
+	for(int i =0;i<strlen(str);i++){
+	if(str[i]>=47){
+	       if(str[i]>'9'){
+		       sprintf(vstr[k]+strlen(vstr[k]),"%c",str[i]);
+	       } else k++; } }
+	for(int i = 0;i<k;i++){
+		for(int j = 0;j<n;j++){
+			if(strcmp(vstr[i],name[j])==0){
+			//	printf("%d %s = %s\n",i,vstr[i],value[i]);
+				//_______
+				for(int j = 0;j<strlen(str);j++){
+					if(str[j]==vstr[q][i]){
+						tstr[l] = value[i][j];
+					}
+					else{
+						tstr[l]= str[j]; 
+					}
+					l++;
+				}
+				//_______
+			}
+			//printf("%s %s \n",vstr[i],name[j]);
+		}
+		vstr[i][0] = '\0';
+	}
+	printf("> %s\n",tstr);
+	//printf("%s\n",vstr[0]);
+	//printf("%s\n",vstr[1]);
+	printf("\n");
+	tstr[0] = '\0';
 }
