@@ -45,8 +45,12 @@ int main(int argc,char *argv[]){
 	float num = 0;
 	bool ifs = false;
 	bool vif = false;
+	bool vvf = false;
+	bool tok[100];
 	int n = 0;
+	int c = 0;
 	char streq[100][100];
+	char equ[100];
 	int len = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
@@ -60,21 +64,18 @@ int main(int argc,char *argv[]){
 
 		if(!ifs) vif  = var_checker(strn);
 		if(vif){
+			//will see if there is var. in lines 
 			get_name_var(strn,var_info.var_name[n]);
 			get_value_var(strn,var_info.var_value[n]);
 			var_info.num[n] = get_type_var(var_info.var_value[n]);
 			n++;
 		}
-	//	printf("___________________________________________\n");
-	//	for(int i = 0;i<n;i++){
-	//		printf("%s=",var_info.var_name[i]);
-	//		printf("%s|",var_info.var_value[i]);
-	//		printf("%b\n",var_info.num[i]);
-	//	}
-
-   		//printf("%lu - %s",lines,strn);
 		if(ifs){
-			see_var(strn,var_info.var_name,var_info.var_value,var_info.num,n);
+			vvf = use_var(strn); // will check if the equ. use variable
+				if(vvf){
+					pars_var(strn,equ,streq,&c);
+					get_tok(tok,streq,c);
+				}
 			equle(strn,&num);
 		}
 
