@@ -78,6 +78,27 @@ void pars_var(char *str,char *equ,char array_str[100][100],int *j){
 void get_tok(bool *arr,char str[100][100],int c){
 	for(int i = 0;i<=c;i++){
 		arr[i] = (str[i][0]>65);
-		printf(">%d\n",arr[i]);
+	}
+}
+void get_vals(char streq[100][100],char name[100][100],char value[100][100],bool *tok,int c,int n){
+	for(int i = 0;i<=c;i++){
+		for(int j = 0;j<=n;j++){
+			if(tok[i])if(strcmp(streq[i],name[j])==0) strcpy(streq[i],value[j]);
+		}
+	}
+}
+void make_equ(char *str,char strq[100][100],char *equ,int c){
+	char tstr[100] = "\0";
+	for(int i = 0;i<=c;i++){
+		strcat(tstr,strq[i]);
+		sprintf(tstr+strlen(tstr),"%c",equ[i]);
+	}
+	tstr[strlen(tstr)] = '\0';
+	strcpy(str,tstr);
+	for(int i = 0;i<=c;i++){
+		for(int j = 0;j<strlen(strq[i]);j++){
+			strq[i][j] = '\0';
+		}
+		equ[i] = '\0';
 	}
 }

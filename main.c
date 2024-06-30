@@ -75,6 +75,8 @@ int main(int argc,char *argv[]){
 				if(vvf){
 					pars_var(strn,equ,streq,&c);
 					get_tok(tok,streq,c);
+					get_vals(streq,var_info.var_name,var_info.var_value,tok,c,n);
+					make_equ(strn,streq,equ,c);
 				}
 			equle(strn,&num);
 		}
