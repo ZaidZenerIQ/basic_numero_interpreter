@@ -1,8 +1,11 @@
-a = 1
-b = 2
-c = 3
-zenger = 20
+a = 12
+b = 32
+c = 30
+zaid = 99
+baha = 69
 _start_
-2+3*a
-a-6*b
-a-zenger
+a+2
+b+3
+c+9
+baha+zaid*a
+c/5
