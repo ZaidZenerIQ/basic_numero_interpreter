@@ -1,11 +1,10 @@
-a = 12
-b = 32
-c = 30
-zaid = 99
-baha = 69
+a = 2
+b = 3
+c = 10
 _start_
-a+2
-b+3
-c+9
-baha+zaid*a
+a+a
+2*c+c
+1-6*a
 c/5
+c+c+c
+a+b+c

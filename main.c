@@ -13,7 +13,14 @@ struct var_data {
 
 int main(int argc,char *argv[]){
 	struct var_data var_info;
-
+	char str[100];
+	size_t l = strlen(argv[1]);
+	strcpy(str,argv[1]);
+	if(str[l-3]!='.'&&str[l-2]!='z'&&str[l-1]!='x'){
+		printf("Not able to read the file\n");
+		printf("make sure the file end by .zx \n");
+		return 1;
+	}
 	if(argv[1]==NULL){
 		printf("Nead argument of the name of the file\n");
 		return 1;
