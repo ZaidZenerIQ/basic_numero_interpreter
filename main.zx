@@ -1,8 +1,13 @@
 a = 2
 b = 3
 c = 10
+out("hello world,")
+pow(2)
+sqrt(4)
+zz()
 _start_
 a+a
+out("hello world,")
 2*c+c
 1-6*a
 c/5

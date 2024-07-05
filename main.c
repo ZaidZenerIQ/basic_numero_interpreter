@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "calco.h"
 #include "vars.h"
+#include "func.h"
 
 struct var_data {
 	char var_name[100][100];
@@ -13,6 +14,7 @@ struct var_data {
 
 int main(int argc,char *argv[]){
 	struct var_data var_info;
+	struct var_data func_info;
 	char str[100];
 	size_t l = strlen(argv[1]);
 	strcpy(str,argv[1]);
@@ -42,7 +44,8 @@ int main(int argc,char *argv[]){
 		printf("For more info. use -h\n");
 		return 1;
 	}
-	
+	//function 
+	built_in_func(func_info.var_name);
 	//declartion of Variables
 	FILE *fptr;
 	FILE *save;
@@ -59,6 +62,7 @@ int main(int argc,char *argv[]){
 	char streq[100][100];
 	char equ[100];
 	int len = 0;
+	bool iff = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -68,7 +72,6 @@ int main(int argc,char *argv[]){
 	//main loop
 	while(fgets(strn, 100, fptr)){
 		strn[strcspn(strn, "\n")] = 0;
-
 		if(!ifs) vif  = var_checker(strn);
 		if(vif){
 			//will see if there is var. in lines 
@@ -77,6 +80,8 @@ int main(int argc,char *argv[]){
 			var_info.num[n] = get_type_var(var_info.var_value[n]);
 			n++;
 		}
+		else iff = check_func(strn,func_info.var_name);
+		//if(iff) printf(" > %s\n",strn);
 		if(ifs){
 			vvf = use_var(strn); // will check if the equ. use variable
 				if(vvf){
@@ -96,10 +101,10 @@ int main(int argc,char *argv[]){
 				return 1;
 			}
 			else if(argv[2][1]=='c' && argv[2][2]=='q'&& argv[2][3]=='\0'){
-				if(ifs)printf("%s = %.3f\n",strn,num);
+				if(ifs && !iff)printf("%s = %.3f\n",strn,num);
 			}
 			else if(argv[2][1]=='c' && argv[2][2]=='\0'){
-				if(ifs == true)printf("%.3f\n",num);
+				if(ifs == true && !iff)printf("%.3f\n",num);
 			}
 			else if(argv[2][1]=='f'){
 					if(argv[3]==NULL){
@@ -110,10 +115,10 @@ int main(int argc,char *argv[]){
 						if(lines==1)remove(argv[3]);
 						out[100];
 						if(argv[2][2]=='q' && argv[2][3]=='\0'){
-							if(ifs)sprintf(out,"%s = %.3f\n",strn,num);
+							if(ifs && !iff)sprintf(out,"%s = %.3f\n",strn,num);
 						}
 						else if(argv[2][2]=='\0') {
-							if(ifs)sprintf(out,"%.3f\n",num);
+							if(ifs && !iff)sprintf(out,"%.3f\n",num);
 						}
 						else{
 							printf("this command doesn't exist\n");
