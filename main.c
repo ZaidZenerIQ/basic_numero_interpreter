@@ -63,6 +63,9 @@ int main(int argc,char *argv[]){
 	char equ[100];
 	int len = 0;
 	bool iff = 0;
+	char func[100];
+	char arg[100];
+	int  ivf = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -80,8 +83,12 @@ int main(int argc,char *argv[]){
 			var_info.num[n] = get_type_var(var_info.var_value[n]);
 			n++;
 		}
-		else iff = check_func(strn,func_info.var_name);
-		//if(iff) printf(" > %s\n",strn);
+		//check for use of functions 
+		else iff = check_func(strn,func_info.var_name,func);
+		if(iff){
+			ivf = get_arg(strn,arg);
+			function_call(func,arg);
+		}
 		if(ifs){
 			vvf = use_var(strn); // will check if the equ. use variable
 				if(vvf){
