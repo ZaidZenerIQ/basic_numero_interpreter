@@ -25,22 +25,37 @@ bool check_func(char *str,char func_name[100][100],char *temp){
 	}
 	return 0;
 }
-int get_arg(char *str,char *arg){
+bool see_arg(char *arg,char *cot){
+	bool igf = 0;
+	igf = (cot[0] == '"' || cot[strlen(cot)-1] == '"');
+	if(igf) return 1;
+	else return 0;
+}
+bool get_arg(char *str,char *arg){
+	char cot[5];
 	bool k = false;
 	int j = 0;
+	int q = 0;
+	bool e = 0;
 	for(int i = 0;i<strlen(str);i++){
 		if(str[i]==')') k = false;
-		if(k){	
+		if(k && str[i]!='"'){	
 			arg[j] = str[i];
 			j++;
+		}
+		else if(k && str[i]=='"'){
+			cot[q] = str[i];
+			q++;
 		}
 		if(str[i]=='(') k = true;
 	}
 	arg[j] = '\0';
-	if(arg[0]=='"' && arg[j-1]=='"') return false;
-	else if (arg[0]!='"' && arg[j-1]!='"') return true;
-	return 2;
-	//error_function()
+	cot[q] = '\0';
+	e = (cot[0]=='"' && cot[1]=='"');
+	if(e) return 1;
+	else e = see_arg(arg,cot);
+	if(e) return 0;
+	else return 1;
 }
 void out_call(char *arg){
 	printf("%s\n",arg);

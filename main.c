@@ -65,7 +65,9 @@ int main(int argc,char *argv[]){
 	bool iff = 0;
 	char func[100];
 	char arg[100];
-	int  ivf = 0;
+	bool ivf = 0;
+	bool igf = 0;
+	bool vgf = 0;
 	//reading file
 	fptr = fopen(argv[1], "r");
 	if(fptr == NULL) {
@@ -87,7 +89,14 @@ int main(int argc,char *argv[]){
 		else iff = check_func(strn,func_info.var_name,func);
 		if(iff){
 			ivf = get_arg(strn,arg);
-			function_call(func,arg);
+			if(ivf)function_call(func,arg);
+			else{
+				printf("%s\n",strn);
+				printf("SyntaxError: unterminated string literal (detected at line %d)\n",lines+1);
+				return 1;
+			}
+			vgf = use_var(arg);
+			printf(">>%d\n",vgf);
 		}
 		if(ifs){
 			vvf = use_var(strn); // will check if the equ. use variable
