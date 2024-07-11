@@ -1,9 +1,15 @@
-a = 2
+a = 8
 b = 3
 c = 10
-out("aaaaa")
-out(c)
-out(hii)
+out("before :")
+out(a)
+pow(a)
+out("after pow :")
+out(a)
+sqrt(a)
+out("after sqrt :")
+out(a)
+out("____________")
 _start_
 a+a
 2*c+c

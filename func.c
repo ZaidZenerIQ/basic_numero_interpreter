@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <math.h>
 void built_in_func(char func_name[100][100]){
 	char arr[3][10] = {"out()","sqrt()","pow()"};
 	for(int i = 0;i<3;i++){
@@ -31,7 +32,9 @@ bool see_arg(char *arg,char *cot){
 	if(igf) return 1;
 	else return 0;
 }
-bool get_arg(char *str,char *arg){
+bool get_arg(char *str,char *arg,bool *ifs){
+	// !!
+	*ifs = false;
 	char cot[5];
 	bool k = false;
 	int j = 0;
@@ -53,23 +56,48 @@ bool get_arg(char *str,char *arg){
 	cot[q] = '\0';
 	e = (cot[0]=='"' && cot[1]=='"');
 	if(e) return 1;
-	else e = see_arg(arg,cot);
+	e = see_arg(arg,cot);
 	if(e) return 0;
-	else return 1;
+	if(str[0]=='o')*ifs = true;
+	return 1;
 }
 void out_call(char *arg){
 	printf("%s\n",arg);
 }
-void function_call(char *func,char *arg){
+void sqrt_call(char *arg,char name[100][100],char value[100][100],int n){
+	float f = 0;
+	int i = 0;
+	for(i = 0;i<n;i++){
+		if(strcmp(arg,name[i])==0){
+			f = atof(value[i]);
+			f = sqrtf(f);
+			break;
+		}
+	}
+	sprintf(value[i],"%.0f",f);
+}
+void pow_call(char *arg,char name[100][100],char value[100][100],int n){
+	float f = 0;
+	int i = 0;
+	for(i = 0;i<n;i++){
+		if(strcmp(arg,name[i])==0){
+			f = atof(value[i]);
+			f = f*f;
+			break;
+		}
+	}
+	sprintf(value[i],"%.0f",f);
+}
+void function_call(char *func,char *arg,char name[100][100],char value[100][100],int n){
 	switch (func[0]){
 	case 'o':
 		out_call(arg);
 		break;
 	case 's':
-	//	printf("sqrt\n");
+		sqrt_call(arg,name,value,n);
 		break;
 	case 'p':
-	//	printf("pow\n");
+		pow_call(arg,name,value,n);
 		break;
 	}
 }

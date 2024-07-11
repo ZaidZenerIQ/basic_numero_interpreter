@@ -88,16 +88,22 @@ int main(int argc,char *argv[]){
 		//check for use of functions 
 		else iff = check_func(strn,func_info.var_name,func);
 		if(iff){
-			ivf = get_arg(strn,arg);
-			if(ivf)function_call(func,arg);
+			ivf = get_arg(strn,arg,&vgf);
+			if(ivf){
+				if(vgf){
+					pars_var(arg,equ,streq,&c);
+					get_tok(tok,streq,c);
+					get_vals(streq,var_info.var_name,var_info.var_value,tok,c,n);
+					make_equ(arg,streq,equ,c);
+				}
+				function_call(func,arg,var_info.var_name,var_info.var_value,n);
+			}
 			else{
 				printf("%s\n",strn);
 				printf("SyntaxError: unterminated string literal (detected at line %d)\n",lines+1);
 				return 1;
 			}
-			vgf = use_var(arg);
-			printf(">>%d\n",vgf);
-		}
+					}
 		if(ifs){
 			vvf = use_var(strn); // will check if the equ. use variable
 				if(vvf){
