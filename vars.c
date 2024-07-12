@@ -4,13 +4,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-//a = 3
-//b = "zaid"
-//c = "3z"
-//e = "2"
-//ff = 23
-//ff = "zaid"
-//get(pi) << not var
 bool var_checker(char *str_in){
 	int i = 0;
 	while(str_in[i] != '\0'){
@@ -101,4 +94,14 @@ void make_equ(char *str,char strq[100][100],char *equ,int c){
 		}
 		equ[i] = '\0';
 	}
+}
+
+void get_const(char name[100][100],char value[100][100],int *n){
+		char const_name[2][10] = {"PI","D_PI"};		
+		char const_value[2][10] = {"3.141","6.282"};
+		for(int i = 0;i<2;i++){
+				strcpy(name[i],const_name[i]);
+				strcpy(value[i],const_value[i]);
+				*n = *n + 1;
+		}
 }

@@ -6,6 +6,8 @@
 #include "vars.h"
 #include "func.h"
 
+
+
 struct var_data {
 	char var_name[100][100];
 	char var_value[100][100];
@@ -13,9 +15,12 @@ struct var_data {
 };
 
 int main(int argc,char *argv[]){
+
 	struct var_data var_info;
 	struct var_data func_info;
 	char str[100];
+	int n = 0;
+	get_const(var_info.var_name,var_info.var_value,&n);
 	size_t l = strlen(argv[1]);
 	strcpy(str,argv[1]);
 	if(str[l-3]!='.'&&str[l-2]!='z'&&str[l-1]!='x'){
@@ -57,7 +62,6 @@ int main(int argc,char *argv[]){
 	bool vif = false;
 	bool vvf = false;
 	bool tok[100];
-	int n = 0;
 	int c = 0;
 	char streq[100][100];
 	char equ[100];

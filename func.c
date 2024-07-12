@@ -41,7 +41,7 @@ bool get_arg(char *str,char *arg,bool *ifs){
 	int q = 0;
 	bool e = 0;
 	for(int i = 0;i<strlen(str);i++){
-		if(str[i]==')') k = false;
+		if(str[i]=='\0') k = false;
 		if(k && str[i]!='"'){	
 			arg[j] = str[i];
 			j++;
@@ -52,7 +52,7 @@ bool get_arg(char *str,char *arg,bool *ifs){
 		}
 		if(str[i]=='(') k = true;
 	}
-	arg[j] = '\0';
+	arg[j-1] = '\0';
 	cot[q] = '\0';
 	e = (cot[0]=='"' && cot[1]=='"');
 	if(e) return 1;

@@ -1,17 +1,11 @@
 a = 8
 b = 3
 c = 10
-out("before :")
-out(a)
-pow(a)
-out("after pow :")
-out(a)
-sqrt(a)
-out("after sqrt :")
-out(a)
-out("____________")
+out(PI)
+out(D_PI)
+out(":)")
 _start_
-a+a
+a+2
 2*c+c
 1-6*a
 c/5
